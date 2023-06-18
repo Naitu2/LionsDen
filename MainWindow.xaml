@@ -1,0 +1,39 @@
+﻿<Window x:Class="LionsDen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LionsDen.ViewModels"
+        xmlns:viewmodels="clr-namespace:LionsDen.ViewModels"
+        mc:Ignorable="d"
+        Title="Lion's Den GYM Membership System" Height="450" Width="800" Background="#131313">
+    <Grid>
+        
+        <Grid Grid.Row="1">
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
+        
+        <Grid Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Home"
+                          Cursor="Hand"
+                          Command="{Binding GoHomeCommand}" />
+                <MenuItem Header="Exit"
+                          Cursor="Hand"
+                          Command="{Binding HeaderExitClickCommand}" />
+            </Menu>
+            <Menu HorizontalAlignment="Right">
+                <MenuItem Header="Credits"
+                          Cursor="Hand"
+                          Command="{Binding HeaderCreditsClickCommand}" />
+            </Menu>
+            </Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        
+    </Grid>
+    
+</Window>

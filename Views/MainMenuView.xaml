@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="LionsDen.Views.MainMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LionsDen.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="newMemberButton"
+                    Cursor="Hand"
+                    Content="Registrate Member" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="150" 
+                    Height="70" 
+                    Grid.Column="0"
+                    Command="{Binding GoToMemberChooseCommand}"
+                    CommandParameter="NewMember" 
+                    />
+
+            <Button x:Name="MembersInfoButton"
+                    Cursor="Hand"
+                    Content="Members Information"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="150" Height="70"
+                    Grid.Column="1"
+                    Command="{Binding GoToMemberChooseCommand}"
+                    CommandParameter="MembersInformation" />
+
+            <Button x:Name="MembersAttendanceButton"
+                    Cursor="Hand"
+                    Content="Members Attendance"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="150" Height="70"
+                    Grid.Column="2" 
+                    Command="{Binding GoToMemberChooseCommand}"
+                    CommandParameter="MembersAttendance" />
+        </Grid>
+        <Image HorizontalAlignment="Center"  Grid.Row="1"
+               Source="../Images/LionsDenLogo.jpeg"
+               VerticalAlignment="Center"
+               Stretch="UniformToFill">
+        </Image>
+    </Grid>
+</UserControl>

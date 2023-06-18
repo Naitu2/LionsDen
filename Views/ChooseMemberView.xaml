@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="LionsDen.Views.ChooseMemberView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LionsDen.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Source="../Images/ArrowBack.png" 
+               HorizontalAlignment="Left"
+               Cursor="Hand"
+               Margin="10,10"
+               VerticalAlignment="Top"
+               Height="30" Width="30">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ReturnNavigateCommand}"/>
+            </Image.InputBindings>
+        </Image>
+        <Button Content="Client"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="70" Width="140"
+                Command="{Binding ClientButtonCommand}"/>
+        <Button Grid.Column="1" Content="Employee"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="70" Width="140"
+                Command="{Binding EmployeeButtonCommand}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,222 @@
+﻿<UserControl x:Class="LionsDen.Views.EmployeeUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LionsDen.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Employee Update"
+                   FontSize="50" FontWeight="Bold"
+                   Foreground="#E6E6E6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="#131313">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+              
+                <TextBlock Text="Phone Number:" 
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6" 
+                           Grid.Row="0" Grid.Column="0" />
+                <TextBox x:Name="txtPhoneNumber" 
+                         Text="{Binding TxtPhoneNumber}"
+                         BorderBrush="{Binding PhoneNumberBorderColor }"
+                         Height="20" Margin="10"
+                         VerticalAlignment="Center"
+                         Background="#E6E6E6" 
+                         Grid.Row="0" Grid.Column="1"
+                         MaxLength="10"/>
+                <TextBlock Grid.Column="1" Grid.Row="0"
+                           HorizontalAlignment="Center" 
+                           Foreground="red" FontSize="10"
+                           Visibility="{Binding PhoneNumberVisibility}"
+                           VerticalAlignment="Top">
+                         Enter valid phone number <LineBreak/>
+                         (10 digits, starting with "0")
+                </TextBlock>
+
+                <TextBlock Text="Email:"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6"
+                           Grid.Row="1" Grid.Column="0" />
+                <TextBox x:Name="txtEmail" 
+                         Text="{Binding TxtEmail}"
+                         BorderBrush="{Binding EmailBorderColor}"
+                         Height="20" Margin="10"
+                         VerticalAlignment="Center"
+                         Background="#E6E6E6" 
+                         Grid.Row="1" Grid.Column="1"
+                         MaxLength="50"/>
+                <TextBlock Grid.Column="1" Grid.Row="1"
+                           HorizontalAlignment="Center" 
+                           Foreground="red" FontSize="10"
+                           Visibility="{Binding EmailVisibility}"
+                           VerticalAlignment="Top">
+                         Enter valid email. Example:<LineBreak/>
+                          email123@example.com
+                </TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="1" Background="#131313">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.23*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Full Address:"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6"
+                           Grid.Row="0" Grid.Column="0" />
+                    <TextBox x:Name="txtAddress" 
+                         Text="{Binding TxtAddress}"
+                         BorderBrush="{Binding AddressBorderColor}"
+                         Background="#E6E6E6"
+                         Height="20" Margin="10"
+                         VerticalAlignment="Center"
+                         Grid.Row="0" Grid.Column="1"
+                         MaxLength="150"/>
+
+                    <TextBlock Text="Specialized Training:"
+                           Visibility="{Binding SpecTrainingVisibility}"
+                           FontSize="20"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6"/>
+                    <Border BorderBrush="{Binding SpecTrainingBorderColor}"
+                        Visibility="{Binding SpecTrainingVisibility}"
+                        BorderThickness="1.5"
+                        Height="20" Margin="10"
+                        VerticalAlignment="Center"
+                        Grid.Row="1" Grid.Column="1">
+                        <ComboBox x:Name="cmbSpecTraining"
+                          Visibility="{Binding SpecTrainingVisibility}"
+                          ItemsSource="{Binding SpecTrainingOptions}"
+                          SelectedItem="{Binding CmbSpecTraining}"
+                          Background="#E6E6E6">
+                        </ComboBox>
+                    </Border>
+
+
+
+                </Grid>
+
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="#E6E6E6">
+                    <Grid Background="#F1EC20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Delete"
+                    Command="{Binding DeleteEmployeeCommand}"
+                    HorizontalAlignment="Center"
+                    Cursor="Hand" Grid.Column="0"
+                    VerticalAlignment="Center" 
+                    Height="40" Width="60"/>
+                        <Button Content="Update"
+                    Command="{Binding UpdateEmployeeCommand}"
+                    HorizontalAlignment="Center"
+                    Grid.Column="1" Cursor="Hand"
+                    VerticalAlignment="Center" 
+                    Height="40" Width="60"/>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Column="2" Background="#131313">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                                   
+                <TextBlock Text="Years of Experience:"
+                           FontSize="20"
+                           Grid.Row="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6"/>
+                <Border BorderBrush="{Binding YearsOfExpBorderColor}"
+                        BorderThickness="1"
+                        Height="20" Margin="10"
+                        VerticalAlignment="Center"
+                        Grid.Row="0" Grid.Column="1">
+                    <ComboBox x:Name="cmbYearsOfExp"
+                          ItemsSource="{Binding YearsOfExpOptions}"
+                          SelectedItem="{Binding CmbYearsOfExp}"
+                          Background="#E6E6E6">
+                    </ComboBox>
+                </Border>
+
+                <TextBlock Text="Work Days:"
+                           FontSize="20"
+                           Grid.Row="3"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E6E6E6"/>
+                <Border BorderBrush="{Binding WorkDaysBorderColor}"
+                        BorderThickness="1"
+                        Height="20" Margin="10"
+                        VerticalAlignment="Center"
+                        Grid.Row="3" Grid.Column="1">
+                    <ComboBox x:Name="cmbWorkDays"
+                          ItemsSource="{Binding WorkDaysOptions}"
+                          SelectedItem="{Binding CmbWorkDays}"
+                          Background="#E6E6E6">
+                    </ComboBox>
+                </Border>
+
+            </Grid>
+
+        </Grid>
+        <Image Source="../Images/ArrowBack.png" 
+               HorizontalAlignment="Left"
+               Cursor="Hand"
+               Margin="10,10"
+               VerticalAlignment="Top"
+               Height="30" Width="30">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ReturnNavigateCommand}"/>
+            </Image.InputBindings>
+        </Image>
+    </Grid>
+</UserControl>

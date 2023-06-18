@@ -1,0 +1,42 @@
+﻿<Application x:Class="LionsDen.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LionsDen"
+             xmlns:views="clr-namespace:LionsDen.Views"
+             xmlns:viewmodels="clr-namespace:LionsDen.ViewModels">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:MainMenuViewModel}">
+            <views:MainMenuView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:MainWindowViewModel}">
+            <local:MainWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ChooseMemberViewModel}">
+            <views:ChooseMemberView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ClientRegistrationViewModel}">
+            <views:ClientRegistrationView/>
+        </DataTemplate> 
+        <DataTemplate DataType="{x:Type viewmodels:EmployeeRegistrationViewModel}">
+            <views:EmployeeRegistrationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ExitConfirmationViewModel}">
+            <views:ExitConfirmationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ClientInformationViewModel}">
+            <views:ClientInformationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EmployeeInformationViewModel}">
+            <views:EmployeeInformationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ClientUpdateViewModel}">
+            <views:ClientUpdateView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EmployeeUpdateViewModel}">
+            <views:EmployeeUpdateView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ClientAttendanceViewModel}">
+            <views:ClientAttendanceView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
