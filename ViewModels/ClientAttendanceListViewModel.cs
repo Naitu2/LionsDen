@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LionsDen.Models;
+using LionsDen.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,9 @@ namespace LionsDen.ViewModels
 {
     class ClientAttendanceListViewModel : BaseViewModel
     {
-
+        public ClientAttendanceListViewModel(NavigationStore navigationStore, Client clickedClient)
+        {
+            
+        }
     }
 }

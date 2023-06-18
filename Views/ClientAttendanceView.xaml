@@ -61,7 +61,7 @@
                                         <TextBlock Cursor="Hand">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
-                                            Command="{Binding DataContext.GoToClientUpdateCommand,
+                                            Command="{Binding DataContext.GoToClientAttendanceListCommand,
                             RelativeSource={RelativeSource Mode=FindAncestor,
                             AncestorType={x:Type ListView}}}"
                              CommandParameter="{Binding}"                              />
@@ -85,7 +85,7 @@
                             DisplayMemberBinding="{Binding AssignedTraining}"
                             Width="auto"/>
                             <GridViewColumn 
-                                Header="Training Hours" 
+                                Header="Hours in GYM (Last Month)" 
                                 Width="auto"
                                 DisplayMemberBinding="{Binding TrainingHours}"/>
 
