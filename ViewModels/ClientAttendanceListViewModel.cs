@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LionsDen.ViewModels
 {
-    internal class ClientAttendanceViewModel : BaseViewModel
+    class ClientAttendanceListViewModel : BaseViewModel
     {
 
     }
