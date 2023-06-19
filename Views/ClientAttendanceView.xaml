@@ -92,7 +92,10 @@
                             <GridViewColumn Header="IN" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="Log In" Foreground="Blue" Cursor="Hand">
+                                        <TextBlock Text="Log In" 
+                                                   Foreground="{Binding LogInColor}" 
+                                                   Cursor="{Binding LogInCursor}"
+                                                   IsEnabled="{Binding LogInEnabled}">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
                     Command="{Binding DataContext.LogInCommand,
@@ -109,8 +112,9 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="Log Out"
-                                                   Foreground="Blue" 
-                                                   Cursor="Hand">
+                                                   Foreground="{Binding LogOutColor}" 
+                                                   Cursor="{Binding LogOutCursor}"
+                                                   IsEnabled="{Binding LogOutEnabled}">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
                     Command="{Binding DataContext.LogOutCommand,
