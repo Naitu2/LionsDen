@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LionsDen.Service;
+using LionsDen.Views;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +14,7 @@ namespace LionsDen.Models
         public Member()
         {
             DateOfRegistration = DateTime.Now.Date;
+            GymSessions = new ObservableCollection<GymSession>();
         }
 
         public string TaxId { get; set; }
@@ -22,5 +26,7 @@ namespace LionsDen.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public DateTime DateOfRegistration { get; set; }
+        public bool IsLoggedIn { get; set; }
+        public ObservableCollection<GymSession> GymSessions { get; set; }
     }
 }

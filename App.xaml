@@ -38,8 +38,8 @@
         <DataTemplate DataType="{x:Type viewmodels:ClientAttendanceViewModel}">
             <views:ClientAttendanceView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:ClientAttendanceListViewModel}">
-            <views:ClientAttendanceListView/>
+        <DataTemplate DataType="{x:Type viewmodels:ClientSessionListViewModel}">
+            <views:ClientSessionListView/>
         </DataTemplate>
     </Application.Resources>
 </Application>

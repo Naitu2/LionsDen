@@ -87,7 +87,7 @@
                             <GridViewColumn 
                                 Header="Hours in GYM (Last Month)" 
                                 Width="auto"
-                                DisplayMemberBinding="{Binding TrainingHours}"/>
+                                DisplayMemberBinding="{Binding HoursInGymLastMonth}"/>
 
                             <GridViewColumn Header="IN" Width="auto">
                                 <GridViewColumn.CellTemplate>
@@ -108,7 +108,9 @@
                             <GridViewColumn Header="OUT" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="Log Out" Foreground="Blue" Cursor="Hand">
+                                        <TextBlock Text="Log Out"
+                                                   Foreground="Blue" 
+                                                   Cursor="Hand">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
                     Command="{Binding DataContext.LogOutCommand,

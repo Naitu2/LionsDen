@@ -18,9 +18,9 @@ namespace LionsDen.Views
     /// <summary>
     /// Interaction logic for ClientAttendanceListView.xaml
     /// </summary>
-    public partial class ClientAttendanceListView : UserControl
+    public partial class ClientSessionListView : UserControl
     {
-        public ClientAttendanceListView()
+        public ClientSessionListView()
         {
             InitializeComponent();
         }
