@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LionsDen.Views"
-             mc:Ignorable="d" 
+             xmlns:converters="clr-namespace:LionsDen.Service" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#131313">
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </UserControl.Resources>
 
+
+    <Grid Background="#131313">
         <Grid>
             
         <Grid.RowDefinitions>
@@ -87,15 +92,15 @@
                             <GridViewColumn 
                                 Header="Hours in GYM (Last Month)" 
                                 Width="auto"
-                                DisplayMemberBinding="{Binding HoursInGymLastMonth}"/>
+                                DisplayMemberBinding="{Binding HoursInGymLastMonth, StringFormat=N2}"/>
 
                             <GridViewColumn Header="IN" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="Log In" 
-                                                   Foreground="{Binding LogInColor}" 
-                                                   Cursor="{Binding LogInCursor}"
-                                                   IsEnabled="{Binding LogInEnabled}">
+                                                   Foreground="Blue" 
+                                                   Cursor="Hand"
+                                                   IsEnabled="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
                     Command="{Binding DataContext.LogInCommand,
@@ -112,9 +117,9 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="Log Out"
-                                                   Foreground="{Binding LogOutColor}" 
-                                                   Cursor="{Binding LogOutCursor}"
-                                                   IsEnabled="{Binding LogOutEnabled}">
+                                                   Foreground="Blue" 
+                                                   Cursor="Hand"
+                                                   IsEnabled="{Binding IsLoggedIn, Mode=TwoWay}">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
                     Command="{Binding DataContext.LogOutCommand,
@@ -134,4 +139,5 @@
             </Grid>
         </Grid>
     </Grid>
+    
 </UserControl>

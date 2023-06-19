@@ -26,8 +26,6 @@ namespace LionsDen.ViewModels
 
 
             Clients = new ObservableCollection<Client>(MemberStore.ClientList);
-
-     /*       UpdateButtonStates();*/
         }
         private NavigationStore _navigationStore;
         public ICommand ReturnNavigateCommand { get; }
@@ -35,64 +33,6 @@ namespace LionsDen.ViewModels
         public ICommand LogInCommand { get; }
         public ICommand LogOutCommand { get; }
         public ObservableCollection<Client> Clients { get; set; }
-
-        public string LogOutCursor;
-        private bool _logInEnabled;
-        public bool LogInEnabled
-        {
-            get { return _logInEnabled; }
-            set
-            {
-                _logInEnabled = value;
-                OnPropertyChanged(nameof(LogInEnabled));
-                LogOutEnabled = !value;
-                OnPropertyChanged(nameof(LogOutEnabled));
-            }
-        }
-
-        private bool _logOutEnabled;
-
-        public bool LogOutEnabled
-        {
-            get { return _logOutEnabled; }
-            set
-            {
-                _logOutEnabled = value;
-                LogInEnabled = !value;
-                OnPropertyChanged(nameof(LogOutEnabled));
-                OnPropertyChanged(nameof(LogInEnabled));
-            }
-        }
-
-        public double HoursInGymLastMonth
-        {
-            get
-            {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
-                DateTime currentDateTime = DateTime.Now;
-
-                double totalHours = Clients.Sum(client =>
-                {
-                    double clientTotalHours = client.GymSessions
-                        .Where(session => session.LoginTime > lastMonth && session.LogoutTime <= currentDateTime)
-                        .Sum(session => session.SessionDuration.TotalHours);
-
-                    return clientTotalHours;
-                });
-
-                return totalHours;
-            }
-        }
-
-        /*public void UpdateButtonStates()
-        {
-            foreach (Client client in Clients)
-            {
-                bool loggedIn = client.GymSessions.Any(session => session.LogoutTime == null);
-                client.LogInEnabled = !loggedIn;
-                client.LogOutEnabled = loggedIn;
-            }
-        }*/
 
         private void ExecuteReturnNavigateCommand(object parameter)
         {
@@ -110,12 +50,14 @@ namespace LionsDen.ViewModels
         {
             Client clickedClient = parameter as Client;
             GymSession.StartSession(clickedClient);
+            FileExplorer.UpdateMemberData(clickedClient);
         }
 
         public void ExecuteLogOutCommand(object parameter)
         {
             Client clickedClient = parameter as Client;
             GymSession.EndSession(clickedClient);
+            FileExplorer.UpdateMemberData(clickedClient);
         }
     }
 }

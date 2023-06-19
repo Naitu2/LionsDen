@@ -3,13 +3,16 @@ using LionsDen.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LionsDen.Models
 {
-    internal abstract class Member
+    internal abstract class Member : INotifyPropertyChanged
     {
         public Member()
         {
@@ -29,6 +32,31 @@ namespace LionsDen.Models
 
         public ObservableCollection<GymSession> GymSessions { get; set; }
         public GymSession CurrentSession { get; set; }
-        public bool IsLoggedIn { get; set; }
+        private bool _isLoggedIn;
+
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set { _isLoggedIn = value; OnPropertyChanged(); }
+        }
+        public double HoursInGymLastMonth
+        {
+            get
+            {
+                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime currentDateTime = DateTime.Now;
+                double totalHours = GymSessions.Sum(gymSession => gymSession.SessionDuration.TotalHours);
+
+                return totalHours;
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
     }
 }

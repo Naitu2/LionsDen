@@ -19,6 +19,7 @@ namespace LionsDen.Service
             memberToLogIn.GymSessions.Add(session);
             memberToLogIn.CurrentSession = session;
             memberToLogIn.IsLoggedIn = true;
+            memberToLogIn.CurrentSession.LogoutTime = DateTime.Now;
         }
         public static void EndSession<TMember>(TMember memberToLogOut) where TMember : Member
         {
