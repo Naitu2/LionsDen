@@ -5,19 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 
-namespace LionsDen.Service
+namespace LionsDen.Converters
 {
-    class InverseBooleanConverter : IValueConverter
+    internal class InverseBoolToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            bool isLoggedIn = (bool)value;
+            if (isLoggedIn)
+                return Brushes.Blue;
+            else
+                return Brushes.DarkGray;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
+
 }
