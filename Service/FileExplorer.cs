@@ -3,6 +3,7 @@ using LionsDen.Stores;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Enumeration;
 using System.Linq;
@@ -106,13 +107,24 @@ namespace LionsDen.Service
             MessageBox.Show($"{member.GetType().Name} successfully deleted!");
         }
 
-        public static void UpdateMemberData<TMember>(TMember member) where TMember : Member
+        public static void UpdateMemberData<TMember>(TMember member, char sourceLetter) where TMember : Member
         {
             string directoryPath = Path.Combine(_inMainFolderPath, member.GetType().Name, member.TaxId);
             string fileName = Path.Combine(directoryPath, $"{member.TaxId}info.json");
             string jsonData = JsonConvert.SerializeObject(member, Formatting.Indented);
             File.WriteAllText(fileName, jsonData);
+            if(sourceLetter == 'u')
+            {
             MessageBox.Show($"{member.GetType().Name} data successfully updated!");
+            }
+            else if (sourceLetter == 'i')
+            {
+                MessageBox.Show($"{member.GetType().Name} successfully logged in!");
+            }
+            else if (sourceLetter == 'o')
+            {
+                MessageBox.Show($"{member.GetType().Name} successfully logged out!");
+            }
         }
     }
 }

@@ -258,7 +258,7 @@ namespace LionsDen.ViewModels
                     updatedCoach.HourlySalary = Employee.GetHourlySalary(updatedCoach.JobTitle, intYearsOfExp, intWorkDays);
 
                     updatedCoach.SpecializedTraining = CmbSpecTraining;
-                    FileExplorer.UpdateMemberData(updatedCoach);
+                    FileExplorer.UpdateMemberData(updatedCoach, 'u');
                 }
                 else
                 {
@@ -276,7 +276,7 @@ namespace LionsDen.ViewModels
                     int intWorkDays = int.Parse(WorkDaysNumber.Value);
                     updatedEmployee.HourlySalary = Employee.GetHourlySalary(updatedEmployee.JobTitle, intYearsOfExp, intWorkDays);
 
-                    FileExplorer.UpdateMemberData(updatedEmployee);
+                    FileExplorer.UpdateMemberData(updatedEmployee, 'u');
                 }
             }
         }

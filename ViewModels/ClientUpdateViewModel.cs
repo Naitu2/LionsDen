@@ -376,7 +376,7 @@ namespace LionsDen.ViewModels
                 updatedClient.MembershipExpirationDate = updatedClient.DateOfRegistration.AddMonths(int.Parse(MembDurNumber.Value));
 
                 updatedClient.AssignedTraining = Client.GetAssignedTraining(updatedClient);
-                FileExplorer.UpdateMemberData(updatedClient);
+                FileExplorer.UpdateMemberData(updatedClient, 'u');
             }
         }
 
