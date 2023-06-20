@@ -37,7 +37,7 @@ namespace LionsDen.Service
                 Directory.CreateDirectory(inThisMemberFolderPath);
                 string fileName = $"{updatedMember.TaxId}info.json";
                 string fullPath = Path.Combine(inThisMemberFolderPath, fileName);
-                string data = System.Text.Json.JsonSerializer.Serialize(updatedMember);
+                string data = JsonConvert.SerializeObject(updatedMember);
                 File.WriteAllText(fullPath, data);
                 MessageBox.Show($"{memberTypeName} successfully registered!");
                 return true;
@@ -113,7 +113,7 @@ namespace LionsDen.Service
             string fileName = Path.Combine(directoryPath, $"{member.TaxId}info.json");
             string jsonData = JsonConvert.SerializeObject(member, Formatting.Indented);
             File.WriteAllText(fileName, jsonData);
-            if(sourceLetter == 'u')
+            if (sourceLetter == 'u')
             {
             MessageBox.Show($"{member.GetType().Name} data successfully updated!");
             }

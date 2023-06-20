@@ -1,17 +1,13 @@
 ﻿using LionsDen.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LionsDen.Service
 {
     class GymSession
     {
         public DateTime LoginTime { get; set; }
-        public DateTime LogoutTime { get; set; }
-        public TimeSpan SessionDuration => LogoutTime - LoginTime;
+        public DateTime? LogoutTime { get; set; }
+        public TimeSpan SessionDuration => (LogoutTime.HasValue ? LogoutTime.Value : DateTime.Now) - LoginTime;
 
         public static void StartSession<TMember>(TMember memberToLogIn) where TMember : Member
         {
@@ -19,8 +15,8 @@ namespace LionsDen.Service
             memberToLogIn.GymSessions.Add(session);
             memberToLogIn.CurrentSession = session;
             memberToLogIn.IsLoggedIn = true;
-            memberToLogIn.CurrentSession.LogoutTime = DateTime.Now;
         }
+
         public static void EndSession<TMember>(TMember memberToLogOut) where TMember : Member
         {
             if (memberToLogOut.IsLoggedIn)
