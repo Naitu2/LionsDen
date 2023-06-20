@@ -15,6 +15,7 @@ namespace LionsDen.Service
             memberToLogIn.GymSessions.Add(session);
             memberToLogIn.CurrentSession = session;
             memberToLogIn.IsLoggedIn = true;
+            FileExplorer.UpdateMemberData(memberToLogIn, 'i');
         }
 
         public static void EndSession<TMember>(TMember memberToLogOut) where TMember : Member
@@ -23,6 +24,7 @@ namespace LionsDen.Service
             {
                 memberToLogOut.CurrentSession.LogoutTime = DateTime.Now;
                 memberToLogOut.IsLoggedIn = false;
+                FileExplorer.UpdateMemberData(memberToLogOut, 'o');
             }
         }
     }

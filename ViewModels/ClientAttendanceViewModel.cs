@@ -50,14 +50,12 @@ namespace LionsDen.ViewModels
         {
             Client clickedClient = parameter as Client;
             GymSession.StartSession(clickedClient);
-            FileExplorer.UpdateMemberData(clickedClient, 'i');
         }
 
         public void ExecuteLogOutCommand(object parameter)
         {
             Client clickedClient = parameter as Client;
             GymSession.EndSession(clickedClient);
-            FileExplorer.UpdateMemberData(clickedClient, 'o');
         }
     }
 }
