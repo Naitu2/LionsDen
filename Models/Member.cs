@@ -31,7 +31,6 @@ namespace LionsDen.Models
         public DateTime DateOfRegistration { get; set; }
 
         public ObservableCollection<GymSession> GymSessions { get; set; }
-        public GymSession CurrentSession { get; set; }
         private bool _isLoggedIn;
 
         public bool IsLoggedIn

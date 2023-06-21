@@ -1,5 +1,7 @@
 ﻿using LionsDen.Models;
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace LionsDen.Service
 {
@@ -13,7 +15,6 @@ namespace LionsDen.Service
         {
             var session = new GymSession { LoginTime = DateTime.Now };
             memberToLogIn.GymSessions.Add(session);
-            memberToLogIn.CurrentSession = session;
             memberToLogIn.IsLoggedIn = true;
             FileExplorer.UpdateMemberData(memberToLogIn, 'i');
         }
@@ -22,7 +23,7 @@ namespace LionsDen.Service
         {
             if (memberToLogOut.IsLoggedIn)
             {
-                memberToLogOut.CurrentSession.LogoutTime = DateTime.Now;
+                memberToLogOut.GymSessions.LastOrDefault().LogoutTime = DateTime.Now;
                 memberToLogOut.IsLoggedIn = false;
                 FileExplorer.UpdateMemberData(memberToLogOut, 'o');
             }
