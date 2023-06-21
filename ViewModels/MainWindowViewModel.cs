@@ -15,10 +15,10 @@ namespace LionsDen.ViewModels
         public ICommand GoHomeCommand { get; }
         public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
         private readonly NavigationStore _navigationStore;
-        private ICommand _headerCreditsClickCommand;
-        public ICommand HeaderCreditsClickCommand
+        private ICommand _goToCreditsCommand;
+        public ICommand GoToCreditsCommand
         {
-            get { return _headerCreditsClickCommand ?? (_headerCreditsClickCommand = new RelayCommand(ShowCredits)); }
+            get { return _goToCreditsCommand ?? (_goToCreditsCommand = new RelayCommand(ExecuteGoToCreditsCommand)); }
         }
         private ICommand _headerExitClickCommand;
         public ICommand HeaderExitClickCommand
@@ -36,9 +36,10 @@ namespace LionsDen.ViewModels
         {
             OnPropertyChanged(nameof(CurrentViewModel));
         }
-        private void ShowCredits(object parameter)
+        private void ExecuteGoToCreditsCommand(object parameter)
         {
-            MessageBox.Show("Zhopa");
+            var navigateCommand = new NavigateCommand<BaseViewModel>(_navigationStore, () => new CreditsViewModel(_navigationStore, CurrentViewModel));
+            navigateCommand.Execute(parameter);
         }
         private void GoToExitConformation(object parameter)
         {

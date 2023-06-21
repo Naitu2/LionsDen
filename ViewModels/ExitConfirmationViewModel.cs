@@ -18,7 +18,7 @@ namespace LionsDen.ViewModels
         public ICommand ExitCommand { get; }
         public ICommand GoBackCommand { get; }
 
-        public ExitConfirmationViewModel(NavigationStore navigationStore, BaseViewModel prevViewModel )
+        public ExitConfirmationViewModel(NavigationStore navigationStore, BaseViewModel prevViewModel)
         {
             _navigationStore = navigationStore;
             _prevViewModel = prevViewModel;
