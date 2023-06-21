@@ -68,7 +68,7 @@
                                         <TextBlock Cursor="Hand">
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftClick"
-                                            Command="{Binding DataContext.GoToClientAttendanceListCommand,
+                                            Command="{Binding DataContext.GoTClientSessionListCommand,
                             RelativeSource={RelativeSource Mode=FindAncestor,
                             AncestorType={x:Type ListView}}}"
                              CommandParameter="{Binding}"                              />

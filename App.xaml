@@ -41,5 +41,8 @@
         <DataTemplate DataType="{x:Type viewmodels:ClientSessionListViewModel}">
             <views:ClientSessionListView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EmployeeAttendanceViewModel}">
+            <views:EmployeeAttendanceView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
