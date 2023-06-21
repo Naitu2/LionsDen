@@ -1,0 +1,25 @@
+﻿using LionsDen.Commands;
+using LionsDen.Models;
+using LionsDen.Service;
+using LionsDen.Stores;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace LionsDen.ViewModels
+{
+    internal class EmployeeSessionListViewModel : BaseViewModel
+    {
+        public ICommand ReturnNavigateCommand { get; }
+        public ObservableCollection<GymSession> EmployeeSessions { get; set; }
+        public EmployeeSessionListViewModel(NavigationStore navigationStore, Employee clickedEmployee)
+        {
+            ReturnNavigateCommand = new NavigateCommand<BaseViewModel>(navigationStore, () => new EmployeeAttendanceViewModel(navigationStore));
+            EmployeeSessions = clickedEmployee.GymSessions;
+        }
+    }
+}

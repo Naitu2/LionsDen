@@ -19,7 +19,7 @@ namespace LionsDen.ViewModels
             _navigationStore = navigationStore;
 
             ReturnNavigateCommand = new RelayCommand(ExecuteReturnNavigateCommand);
-           /* GoTClientSessionListCommand = new RelayCommand(ExecuteGoTClientSessionListCommand);*/
+            GoToEmployeeSessionListCommand = new RelayCommand(ExecuteGoToEmployeeSessionListCommand);
             LogInCommand = new RelayCommand(ExecuteLogInCommand);
             LogOutCommand = new RelayCommand(ExecuteLogOutCommand);
 
@@ -28,7 +28,7 @@ namespace LionsDen.ViewModels
         }
         private NavigationStore _navigationStore;
         public ICommand ReturnNavigateCommand { get; }
-       /* public ICommand GoTClientSessionListCommand { get; }*/
+        public ICommand GoToEmployeeSessionListCommand { get; }
         public ICommand LogInCommand { get; }
         public ICommand LogOutCommand { get; }
         public ObservableCollection<Employee> Employees { get; set; }
@@ -41,8 +41,8 @@ namespace LionsDen.ViewModels
 
         private void ExecuteGoToEmployeeSessionListCommand(object parameter)
         {
-            Client clickedClient = parameter as Client;
-          /*  _navigationStore.CurrentViewModel = new EmployeeSessionListViewModel(_navigationStore, clickedClient);*/
+            Employee clickedEmployee = parameter as Employee;
+            _navigationStore.CurrentViewModel = new EmployeeSessionListViewModel(_navigationStore, clickedEmployee);
         }
 
         public void ExecuteLogInCommand(object parameter)
