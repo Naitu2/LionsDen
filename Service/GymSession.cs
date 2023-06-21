@@ -1,6 +1,5 @@
 ﻿using LionsDen.Models;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace LionsDen.Service

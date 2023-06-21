@@ -1,10 +1,5 @@
-﻿using LionsDen.Service;
-using LionsDen.ViewModels;
+﻿using LionsDen.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LionsDen.Stores
 {
