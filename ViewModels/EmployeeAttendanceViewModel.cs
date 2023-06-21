@@ -24,7 +24,8 @@ namespace LionsDen.ViewModels
             LogOutCommand = new RelayCommand(ExecuteLogOutCommand);
 
 
-            Employees = new ObservableCollection<Employee>(MemberStore.EmployeeList);
+            var mergedList = MemberStore.EmployeeList.Concat(MemberStore.CoachList).ToList();
+            Employees = new ObservableCollection<Employee>(mergedList);
         }
         private NavigationStore _navigationStore;
         public ICommand ReturnNavigateCommand { get; }

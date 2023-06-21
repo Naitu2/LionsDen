@@ -87,6 +87,10 @@
                             DisplayMemberBinding="{Binding TaxId}"
                             Width="auto"/>
 
+                            <GridViewColumn Header="Job Title"
+                            DisplayMemberBinding="{Binding JobTitle}"
+                            Width="auto"/>
+                            
                             <GridViewColumn 
                                 Header="Hours in GYM (Last Month)" 
                                 Width="auto"
