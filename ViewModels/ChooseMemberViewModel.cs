@@ -66,7 +66,7 @@ namespace LionsDen.ViewModels
                     break;
 
                 case "MembersAttendance":
-
+                    new NavigateCommand<BaseViewModel>(_navigationStore, () => new EmployeeAttendanceViewModel(_navigationStore)).Execute(parameter);
                     break;
             }
         }

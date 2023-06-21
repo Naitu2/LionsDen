@@ -12,6 +12,13 @@ namespace LionsDen.Models
         public string YearsOfExperience { get; set; }
         public double HourlySalary { get; set; }
         public string WorkDays { get; set; }
+        public double MoneyEarnedLastMonth
+        {
+            get
+            {
+                return CalculateMoneyEarnedLastMonth();
+            }
+        }
         public static double GetHourlySalary(string jobTitle, int yearsOfExp, int workDays)
         {
             double hourlyRate = 0;
@@ -75,6 +82,12 @@ namespace LionsDen.Models
 
             double totalHourlySalary = hourlyRate + experienceBonus + workDaysBonus;
             return totalHourlySalary;
+        }
+
+
+        private double CalculateMoneyEarnedLastMonth()
+        {
+            return HoursInGymLastMonth * HourlySalary;
         }
 
     }

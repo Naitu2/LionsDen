@@ -3,10 +3,154 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LionsDen.Views"
+             xmlns:converters="clr-namespace:LionsDen.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <UserControl.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <converters:BoolToBrushConverter x:Key="BoolToBrushConverter"/>
+        <converters:InverseBoolToBrushConverter x:Key="InverseBoolToBrushConverter"/>
+    </UserControl.Resources>
+
+
+    <Grid Background="#131313">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="../Images/ArrowBack.png" 
+               HorizontalAlignment="Left"
+               Cursor="Hand"
+               Margin="10,10"
+               VerticalAlignment="Top"
+               Height="30" Width="30">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding ReturnNavigateCommand}"/>
+                    </Image.InputBindings>
+                </Image>
+
+                <TextBlock Text="Employees Attendance"
+                   FontSize="50" FontWeight="Bold"
+                   Foreground="#E6E6E6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" 
+                       Text="Click on the name of the employee to see more information"
+                   FontSize="15"
+                   Foreground="#E6E6E6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <ListView ItemsSource="{Binding Employees}" Background="#131313">
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Background" Value="#E6E6E6"/>
+                            <Setter Property="Foreground" Value="#131313"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Full Name" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Cursor="Hand">
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftClick"
+                                            Command="{Binding DataContext.GoTEmployeeSessionListCommand,
+                            RelativeSource={RelativeSource Mode=FindAncestor,
+                            AncestorType={x:Type ListView}}}"
+                             CommandParameter="{Binding}"                              />
+                                            </TextBlock.InputBindings>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="FirstName"/>
+                                                    <Binding Path="LastName"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="ID"
+                            DisplayMemberBinding="{Binding TaxId}"
+                            Width="auto"/>
+
+                            <GridViewColumn 
+                                Header="Hours in GYM (Last Month)" 
+                                Width="auto"
+                                DisplayMemberBinding="{Binding HoursInGymLastMonth, StringFormat=N2}"/>
+
+                            <GridViewColumn Header="Money Earned (Last Month)" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0:N2} ₪">
+                                                    <Binding Path="MoneyEarnedLastMonth"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
+                            <GridViewColumn Header="IN" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Log In" 
+                                                   Foreground="{Binding IsLoggedIn, Converter={StaticResource BoolToBrushConverter}}" 
+                                                   Cursor="Hand"
+                                                   IsEnabled="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftClick"
+                    Command="{Binding DataContext.LogInCommand,
+                        RelativeSource={RelativeSource Mode=FindAncestor, 
+                        AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding}" />
+                                            </TextBlock.InputBindings>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="OUT" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Log Out"
+                                                    Foreground="{Binding IsLoggedIn, Converter={StaticResource InverseBoolToBrushConverter}}"
+                                                   Cursor="Hand"
+                                                   IsEnabled="{Binding IsLoggedIn, Mode=TwoWay}">
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftClick"
+                    Command="{Binding DataContext.LogOutCommand,
+                        RelativeSource={RelativeSource Mode=FindAncestor, 
+                        AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding}" />
+                                            </TextBlock.InputBindings>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
+
 </UserControl>
