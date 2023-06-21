@@ -14,6 +14,11 @@ namespace LionsDen.Commands
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
         }
 
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
+        {
+            _execute = execute;
+        }
+
         public override void Execute(object? parameter)
         {
             _execute(parameter);

@@ -1,9 +1,5 @@
 ﻿using LionsDen.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LionsDen.Stores
 {
@@ -22,10 +18,16 @@ namespace LionsDen.Stores
             }
         }
 
+        public Func<BaseViewModel> ViewModelFactory { get; set; }
+
         public object ButtonParameter { get; set; }
         private void OnCurrentViewModelChanged()
         {
             CurrentViewModelChanged?.Invoke();
+        }
+        public void UpdateCurrentViewModel ()
+        {
+         
         }
     }
 }

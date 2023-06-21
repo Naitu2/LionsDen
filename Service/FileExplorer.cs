@@ -1,16 +1,10 @@
 ﻿using LionsDen.Models;
-using LionsDen.Stores;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Enumeration;
 using System.Linq;
-using System.Net;
 using System.Reflection;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace LionsDen.Service
@@ -36,7 +30,7 @@ namespace LionsDen.Service
                 Directory.CreateDirectory(inThisMemberFolderPath);
                 string fileName = $"{updatedMember.TaxId}info.json";
                 string fullPath = Path.Combine(inThisMemberFolderPath, fileName);
-                string data = System.Text.Json.JsonSerializer.Serialize(updatedMember);
+                string data = JsonConvert.SerializeObject(updatedMember);
                 File.WriteAllText(fullPath, data);
                 MessageBox.Show($"{memberTypeName} successfully registered!");
                 return true;
@@ -106,13 +100,24 @@ namespace LionsDen.Service
             MessageBox.Show($"{member.GetType().Name} successfully deleted!");
         }
 
-        public static void UpdateMemberData<TMember>(TMember member) where TMember : Member
+        public static void UpdateMemberData<TMember>(TMember member, char sourceLetter) where TMember : Member
         {
             string directoryPath = Path.Combine(_inMainFolderPath, member.GetType().Name, member.TaxId);
             string fileName = Path.Combine(directoryPath, $"{member.TaxId}info.json");
             string jsonData = JsonConvert.SerializeObject(member, Formatting.Indented);
             File.WriteAllText(fileName, jsonData);
+            if (sourceLetter == 'u')
+            {
             MessageBox.Show($"{member.GetType().Name} data successfully updated!");
+            }
+            else if (sourceLetter == 'i')
+            {
+                MessageBox.Show($"{member.GetType().Name} successfully logged in!");
+            }
+            else if (sourceLetter == 'o')
+            {
+                MessageBox.Show($"{member.GetType().Name} successfully logged out!");
+            }
         }
     }
 }

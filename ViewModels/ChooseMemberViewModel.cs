@@ -1,10 +1,5 @@
 ﻿using LionsDen.Commands;
 using LionsDen.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace LionsDen.ViewModels
@@ -48,7 +43,7 @@ namespace LionsDen.ViewModels
                     break;
 
                 case "MembersAttendance":
-
+                    new NavigateCommand<BaseViewModel>(_navigationStore, () => new ClientAttendanceViewModel(_navigationStore)).Execute(parameter);
                     break;
             }
         }
@@ -66,7 +61,7 @@ namespace LionsDen.ViewModels
                     break;
 
                 case "MembersAttendance":
-
+                    new NavigateCommand<BaseViewModel>(_navigationStore, () => new EmployeeAttendanceViewModel(_navigationStore)).Execute(parameter);
                     break;
             }
         }

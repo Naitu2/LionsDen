@@ -3,21 +3,11 @@ using LionsDen.Models;
 using LionsDen.Service;
 using LionsDen.Stores;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using Validation = LionsDen.Service.Validation;
 
 namespace LionsDen.ViewModels

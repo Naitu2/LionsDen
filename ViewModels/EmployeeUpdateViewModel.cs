@@ -2,13 +2,9 @@
 using LionsDen.Models;
 using LionsDen.Service;
 using LionsDen.Stores;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -258,7 +254,7 @@ namespace LionsDen.ViewModels
                     updatedCoach.HourlySalary = Employee.GetHourlySalary(updatedCoach.JobTitle, intYearsOfExp, intWorkDays);
 
                     updatedCoach.SpecializedTraining = CmbSpecTraining;
-                    FileExplorer.UpdateMemberData(updatedCoach);
+                    FileExplorer.UpdateMemberData(updatedCoach, 'u');
                 }
                 else
                 {
@@ -276,7 +272,7 @@ namespace LionsDen.ViewModels
                     int intWorkDays = int.Parse(WorkDaysNumber.Value);
                     updatedEmployee.HourlySalary = Employee.GetHourlySalary(updatedEmployee.JobTitle, intYearsOfExp, intWorkDays);
 
-                    FileExplorer.UpdateMemberData(updatedEmployee);
+                    FileExplorer.UpdateMemberData(updatedEmployee, 'u');
                 }
             }
         }

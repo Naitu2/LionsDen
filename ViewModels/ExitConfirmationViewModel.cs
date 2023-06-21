@@ -1,10 +1,5 @@
 ﻿using LionsDen.Commands;
 using LionsDen.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,7 +13,7 @@ namespace LionsDen.ViewModels
         public ICommand ExitCommand { get; }
         public ICommand GoBackCommand { get; }
 
-        public ExitConfirmationViewModel(NavigationStore navigationStore, BaseViewModel prevViewModel )
+        public ExitConfirmationViewModel(NavigationStore navigationStore, BaseViewModel prevViewModel)
         {
             _navigationStore = navigationStore;
             _prevViewModel = prevViewModel;

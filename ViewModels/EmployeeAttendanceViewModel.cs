@@ -3,30 +3,32 @@ using LionsDen.Models;
 using LionsDen.Service;
 using LionsDen.Stores;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace LionsDen.ViewModels
 {
-    internal class ClientAttendanceViewModel : BaseViewModel
+    internal class EmployeeAttendanceViewModel : BaseViewModel
     {
-        public ClientAttendanceViewModel(NavigationStore navigationStore)
+        public EmployeeAttendanceViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
 
             ReturnNavigateCommand = new RelayCommand(ExecuteReturnNavigateCommand);
-            GoToClientSessionListCommand = new RelayCommand(ExecuteGoToClientSessionListCommand);
+            GoToEmployeeSessionListCommand = new RelayCommand(ExecuteGoToEmployeeSessionListCommand);
             LogInCommand = new RelayCommand(ExecuteLogInCommand);
             LogOutCommand = new RelayCommand(ExecuteLogOutCommand);
 
 
-            Clients = new ObservableCollection<Client>(MemberStore.ClientList);
+            var mergedList = MemberStore.EmployeeList.Concat(MemberStore.CoachList).ToList();
+            Employees = new ObservableCollection<Employee>(mergedList);
         }
         private NavigationStore _navigationStore;
         public ICommand ReturnNavigateCommand { get; }
-        public ICommand GoToClientSessionListCommand { get; }
+        public ICommand GoToEmployeeSessionListCommand { get; }
         public ICommand LogInCommand { get; }
         public ICommand LogOutCommand { get; }
-        public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Employee> Employees { get; set; }
 
         private void ExecuteReturnNavigateCommand(object parameter)
         {
@@ -34,22 +36,22 @@ namespace LionsDen.ViewModels
 
         }
 
-        private void ExecuteGoToClientSessionListCommand(object parameter)
+        private void ExecuteGoToEmployeeSessionListCommand(object parameter)
         {
-            Client clickedClient = parameter as Client;
-            _navigationStore.CurrentViewModel = new ClientSessionListViewModel(_navigationStore, clickedClient);
+            Employee clickedEmployee = parameter as Employee;
+            _navigationStore.CurrentViewModel = new EmployeeSessionListViewModel(_navigationStore, clickedEmployee);
         }
 
         public void ExecuteLogInCommand(object parameter)
         {
-            Client clickedClient = parameter as Client;
-            GymSession.StartSession(clickedClient);
+            Employee clickedEmployee = parameter as Employee;
+            GymSession.StartSession(clickedEmployee);
         }
 
         public void ExecuteLogOutCommand(object parameter)
         {
-            Client clickedClient = parameter as Client;
-            GymSession.EndSession(clickedClient);
+            Employee clickedEmployee = parameter as Employee;
+            GymSession.EndSession(clickedEmployee);
         }
     }
 }
