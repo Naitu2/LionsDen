@@ -18,7 +18,7 @@ namespace LionsDen.ViewModels
         {
             ReturnNavigateCommand = new NavigateCommand<BaseViewModel>(navigationStore, () => new ChooseMemberViewModel(navigationStore));
         }
-        private string _txtTaxId = "123456789";
+        private string _txtTaxId;
         public string TxtTaxId
         {
             get { return _txtTaxId; }
@@ -39,7 +39,7 @@ namespace LionsDen.ViewModels
                 OnPropertyChanged(nameof(TaxIdBorderColor));
             }
         }
-        private string _txtFirstName = "Vitalik";
+        private string _txtFirstName;
         public string TxtFirstName
         {
             get { return _txtFirstName; }
@@ -54,7 +54,7 @@ namespace LionsDen.ViewModels
                 _txtFirstName = value;
             }
         }
-        private string _txtLastName = "Sadovski";
+        private string _txtLastName;
         public string TxtLastName
         {
             get { return _txtLastName; }
@@ -99,7 +99,7 @@ namespace LionsDen.ViewModels
                 OnPropertyChanged(nameof(DateOfBirthBorderColor));
             }
         }
-        private string _txtAddress = "Kfar";
+        private string _txtAddress;
         public string TxtAddress
         {
             get { return _txtAddress; }
@@ -115,7 +115,7 @@ namespace LionsDen.ViewModels
             }
         }
 
-        private string _txtPhoneNumber = "0535553366";
+        private string _txtPhoneNumber;
         public string TxtPhoneNumber
         {
             get { return _txtPhoneNumber; }
@@ -136,7 +136,7 @@ namespace LionsDen.ViewModels
                 OnPropertyChanged(nameof(PhoneNumberBorderColor));
             }
         }
-        private string _txtEmail = "mail@qwe.ua";
+        private string _txtEmail;
         public string TxtEmail
         {
             get { return _txtEmail; }
