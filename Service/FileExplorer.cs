@@ -37,7 +37,6 @@ namespace LionsDen.Service
             }
         }
 
-
         public static bool IsMemberRegistered<TMember>(TMember checkedMember) where TMember : Member
         {
             string memberTypeName = checkedMember.GetType().Name;
@@ -82,7 +81,7 @@ namespace LionsDen.Service
                 foreach (string folderName in folderNames)
                 {
                     string fileName = Directory.GetFiles(folderName, "*info.json").FirstOrDefault();
-                    if (!string.IsNullOrEmpty(fileName))
+                    if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
                     {
                         string fileContent = File.ReadAllText(fileName);
                         TMember member = JsonConvert.DeserializeObject<TMember>(fileContent);
@@ -96,27 +95,33 @@ namespace LionsDen.Service
         public static void DeleteMemberData<TMember>(TMember member) where TMember : Member
         {
             string directoryPath = Path.Combine(_inMainFolderPath, member.GetType().Name, member.TaxId);
-            Directory.Delete(directoryPath, true);
-            MessageBox.Show($"{member.GetType().Name} successfully deleted!");
+            if (Directory.Exists(directoryPath))
+            {
+                Directory.Delete(directoryPath, true);
+                MessageBox.Show($"{member.GetType().Name} successfully deleted!");
+            }
         }
 
         public static void UpdateMemberData<TMember>(TMember member, char sourceLetter) where TMember : Member
         {
             string directoryPath = Path.Combine(_inMainFolderPath, member.GetType().Name, member.TaxId);
             string fileName = Path.Combine(directoryPath, $"{member.TaxId}info.json");
-            string jsonData = JsonConvert.SerializeObject(member, Formatting.Indented);
-            File.WriteAllText(fileName, jsonData);
-            if (sourceLetter == 'u')
+            if (Directory.Exists(directoryPath) && File.Exists(fileName))
             {
-            MessageBox.Show($"{member.GetType().Name} data successfully updated!");
-            }
-            else if (sourceLetter == 'i')
-            {
-                MessageBox.Show($"{member.GetType().Name} successfully logged in!");
-            }
-            else if (sourceLetter == 'o')
-            {
-                MessageBox.Show($"{member.GetType().Name} successfully logged out!");
+                string jsonData = JsonConvert.SerializeObject(member, Formatting.Indented);
+                File.WriteAllText(fileName, jsonData);
+                if (sourceLetter == 'u')
+                {
+                    MessageBox.Show($"{member.GetType().Name} data successfully updated!");
+                }
+                else if (sourceLetter == 'i')
+                {
+                    MessageBox.Show($"{member.GetType().Name} successfully logged in!");
+                }
+                else if (sourceLetter == 'o')
+                {
+                    MessageBox.Show($"{member.GetType().Name} successfully logged out!");
+                }
             }
         }
     }

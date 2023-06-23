@@ -37,7 +37,7 @@
                     </Image.InputBindings>
                 </Image>
 
-                <TextBlock Text="Employees Attendance"
+                <TextBlock Text="Employee Attendance"
                    FontSize="50" FontWeight="Bold"
                    Foreground="#E6E6E6"
                    HorizontalAlignment="Center"

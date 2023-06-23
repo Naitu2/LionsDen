@@ -1,11 +1,17 @@
 ﻿using LionsDen.Commands;
+using LionsDen.Models;
 using LionsDen.Stores;
+using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace LionsDen.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
+        private ObservableCollection<Client> Clients = new ObservableCollection<Client>(MemberStore.ClientList);
+        private ObservableCollection<Employee> Employees = new ObservableCollection<Employee>(MemberStore.EmployeeList);
+        private ObservableCollection<Coach> Coaches = new ObservableCollection<Coach>(MemberStore.CoachList);
         public ICommand GoHomeCommand { get; }
         public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
         private readonly NavigationStore _navigationStore;

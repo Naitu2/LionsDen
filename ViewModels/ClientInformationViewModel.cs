@@ -20,7 +20,7 @@ namespace LionsDen.ViewModels
         public ClientInformationViewModel(NavigationStore navigationStore)
         {
             ReturnNavigateCommand = new NavigateCommand<BaseViewModel>(navigationStore, () => new ChooseMemberViewModel(navigationStore));
-           Clients = new ObservableCollection<Client>(MemberStore.ClientList);
+            Clients = new ObservableCollection<Client>(MemberStore.ClientList);
             _navigationStore = navigationStore;
         }
         private void ExecuteGoToClientUpdateCommand(object parametr)
