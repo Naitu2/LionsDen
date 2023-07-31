@@ -25,9 +25,5 @@ namespace LionsDen.Stores
         {
             CurrentViewModelChanged?.Invoke();
         }
-        public void UpdateCurrentViewModel ()
-        {
-         
-        }
     }
 }
