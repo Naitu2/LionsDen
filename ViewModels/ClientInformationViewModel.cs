@@ -23,10 +23,10 @@ namespace LionsDen.ViewModels
             Clients = new ObservableCollection<Client>(MemberStore.ClientList);
             _navigationStore = navigationStore;
         }
-        private void ExecuteGoToClientUpdateCommand(object parametr)
+        private void ExecuteGoToClientUpdateCommand(object param)
         {
-            Client clickedClient = parametr as Client;
-            new NavigateCommand<BaseViewModel>(_navigationStore, () => new ClientUpdateViewModel(_navigationStore, clickedClient)).Execute(parametr);
+            Client clickedClient = param as Client;
+            new NavigateCommand<BaseViewModel>(_navigationStore, () => new ClientUpdateViewModel(_navigationStore, clickedClient)).Execute(param);
         }
 
     }

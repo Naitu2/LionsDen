@@ -25,16 +25,14 @@ namespace LionsDen.Service
                 MessageBox.Show($"This member is already registered!");
                 return false;
             }
-            else
-            {
-                Directory.CreateDirectory(inThisMemberFolderPath);
-                string fileName = $"{updatedMember.TaxId}info.json";
-                string fullPath = Path.Combine(inThisMemberFolderPath, fileName);
-                string data = JsonConvert.SerializeObject(updatedMember);
-                File.WriteAllText(fullPath, data);
-                MessageBox.Show($"{memberTypeName} successfully registered!");
-                return true;
-            }
+
+            Directory.CreateDirectory(inThisMemberFolderPath);
+            string fileName = $"{updatedMember.TaxId}info.json";
+            string fullPath = Path.Combine(inThisMemberFolderPath, fileName);
+            string data = JsonConvert.SerializeObject(updatedMember);
+            File.WriteAllText(fullPath, data);
+            MessageBox.Show($"{memberTypeName} successfully registered!");
+            return true;
         }
 
         public static bool IsMemberRegistered<TMember>(TMember checkedMember) where TMember : Member
